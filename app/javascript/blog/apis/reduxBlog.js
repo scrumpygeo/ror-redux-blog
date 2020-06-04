@@ -3,6 +3,14 @@ import axios from 'axios';
 
 //const API_KEY = '?key=asdfsdf'; //not high security so dont hide
 
+
+const token = document.querySelector('[name="csrf-token"]') || {content: 'no-csrf-token'}
+
 export default axios.create({
-  baseURL: 'http://reduxblog.herokuapp.com/api',
+  headers: {
+    common: {
+      'X-CSRF-Token': token.content
+    }
+  },
+  baseURL: '/api/v1',     // ie empty so then action looks at local server.
 });
