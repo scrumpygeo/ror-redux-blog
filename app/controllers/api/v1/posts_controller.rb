@@ -21,7 +21,12 @@ class Api::V1::PostsController < ActionController::Base
         else
             render_error
         end
+    end
 
+    def destroy 
+        @post = Post.find(params[:id])
+        @post.destroy 
+        head :no_content
     end
 
 
